@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StudentRegister</string>
+    <string name="app_name">StudentRegisterRoomSQLite</string>
     <string name="action_settings">Settings</string>
     <string name="empty_student">Student name cannot be empty</string>
     <string name="submit_button">Submit</string>
