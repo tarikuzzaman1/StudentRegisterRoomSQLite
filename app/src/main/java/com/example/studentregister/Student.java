@@ -34,7 +34,7 @@ public class Student extends BaseObservable {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
-        notifyPropertyChanged(BR.studentId);
+        notifyPropertyChanged(com.example.studentregister.BR.studentId);
     }
 
     @Bindable
@@ -44,7 +44,7 @@ public class Student extends BaseObservable {
 
     public void setName(String name) {
         this.name = name;
-        notifyPropertyChanged(BR.name);
+        notifyPropertyChanged(com.example.studentregister.BR.name);
     }
 
     @Bindable
@@ -54,7 +54,7 @@ public class Student extends BaseObservable {
 
     public void setEmail(String email) {
         this.email = email;
-        notifyPropertyChanged(BR.email);
+        notifyPropertyChanged(com.example.studentregister.BR.email);
     }
 
     @Bindable
@@ -64,7 +64,7 @@ public class Student extends BaseObservable {
 
     public void setCountry(String country) {
         this.country = country;
-        notifyPropertyChanged(BR.country);
+        notifyPropertyChanged(com.example.studentregister.BR.country);
     }
 
     @Bindable
@@ -74,6 +74,6 @@ public class Student extends BaseObservable {
 
     public void setRegisteredTime(String registeredTime) {
         this.registeredTime = registeredTime;
-        notifyPropertyChanged(BR.registeredTime);
+        notifyPropertyChanged(com.example.studentregister.BR.registeredTime);
     }
 }
