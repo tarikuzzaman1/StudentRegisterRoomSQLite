@@ -6,7 +6,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.studentregister.databinding.StudentListItemBinding;
 
 import java.util.ArrayList;
 
@@ -17,19 +20,14 @@ public class StudentDataAdapter extends RecyclerView.Adapter<StudentDataAdapter.
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.student_list_item, parent, false);
-        return new StudentViewHolder(itemView);
+        StudentListItemBinding studentListItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.student_list_item, parent, false);
+        return new StudentViewHolder(studentListItemBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         Student currentStudent = students.get(position);
-        holder.name.setText(currentStudent.getName());
-        holder.email.setText(currentStudent.getEmail());
-        holder.country.setText(currentStudent.getCountry());
-        holder.date.setText(currentStudent.getRegisteredTime());
+        holder.studentListItemBinding.setStudent(currentStudent);
     }
 
     @Override
@@ -46,14 +44,13 @@ public class StudentDataAdapter extends RecyclerView.Adapter<StudentDataAdapter.
     }
 
     class StudentViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, email, country, date;
+        private StudentListItemBinding studentListItemBinding;
 
-        public StudentViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.tvName);
-            email = itemView.findViewById(R.id.tvEmail);
-            country = itemView.findViewById(R.id.tvCountry);
-            date = itemView.findViewById(R.id.tvTime);
+        public StudentViewHolder(@NonNull StudentListItemBinding studentListItemBinding) {
+            super(studentListItemBinding.getRoot());
+
+            this.studentListItemBinding = studentListItemBinding;
+
         }
     }
 }

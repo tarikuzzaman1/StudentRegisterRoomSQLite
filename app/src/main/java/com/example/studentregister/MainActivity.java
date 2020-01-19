@@ -1,9 +1,11 @@
 package com.example.studentregister;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import com.example.studentregister.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private StudentDataAdapter studentDataAdapter;
     public static final int NEW_STUDENT_ACTIVITY_REQUEST_CODE = 1;
 
+    private ActivityMainBinding activityMainBinding;
+    private MainActivityClickHandler clickHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.rvStudents);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        clickHandler = new MainActivityClickHandler(this);
+        activityMainBinding.setClickHandler(clickHandler);
+
+        //RecyclerView recyclerView = findViewById(R.id.rvStudents);
+        RecyclerView recyclerView = activityMainBinding.layoutContentMain.rvStudents;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -65,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }).attachToRecyclerView(recyclerView);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+/*        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +86,20 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AddNewStudentActivity.class);
                 startActivityForResult(intent, NEW_STUDENT_ACTIVITY_REQUEST_CODE);
             }
-        });
+        });*/
+    }
+
+    public class MainActivityClickHandler {
+        Context context;
+
+        public MainActivityClickHandler(Context context) {
+            this.context = context;
+        }
+
+        public void onFabClicked(View view) {
+            Intent intent = new Intent(MainActivity.this, AddNewStudentActivity.class);
+            startActivityForResult(intent, NEW_STUDENT_ACTIVITY_REQUEST_CODE);
+        }
     }
 
     @Override

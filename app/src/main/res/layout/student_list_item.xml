@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="student"
+            type="com.example.studentregister.Student" />
+    </data>
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15sp"
@@ -10,7 +16,7 @@
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name "
+        android:text="@{student.name}"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -18,7 +24,7 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="@{student.email}"
         android:textSize="20sp" />
 
     <LinearLayout
@@ -33,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
+            android:text="@{student.country}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TextView
@@ -41,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView"
+            android:text="@{student.registeredTime}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </LinearLayout>
@@ -51,3 +57,4 @@
         android:layout_height="3dp"
         android:background="#483636" />
 </LinearLayout>
+</layout>
